@@ -1,0 +1,7 @@
+config/**
+target/**
+graph.html
+nb*
+*.tgz
+header.txt
+results.csv
