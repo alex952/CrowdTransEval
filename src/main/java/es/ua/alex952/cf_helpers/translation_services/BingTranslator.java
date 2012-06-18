@@ -28,7 +28,13 @@ import java.util.logging.Logger;
  * @author alex952
  */
 public class BingTranslator extends Service {
+	/**
+	 * Client id of the application registered in Microsoft marketplace
+	 */
 	private String clientId;
+	/**
+	 * Client secret of the application registered in Microsoft marketplace
+	 */
 	private String clientSecret;
 	
 	public BingTranslator(String clientId, String clientSecret) {

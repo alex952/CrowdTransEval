@@ -35,6 +35,12 @@ public class SentenceShuffler {
 	private int degree;
 	private Random r;
 
+	/**
+	 * Constructor of the class with the degree of shuffling
+	 * 
+	 * @param degree degree of shuffling
+	 * @throws Exception 
+	 */
 	public SentenceShuffler(int degree) throws Exception {
 		if(degree < 1 || degree > 5)
 			throw new Exception("The degree of shuffling must be an integer between 1 and 5");
@@ -42,6 +48,12 @@ public class SentenceShuffler {
 		this.degree = degree;
 	}
 
+	/**
+	 * Shuffles a sentence with the algorithm implemented
+	 * 
+	 * @param sentenceOrig sentece to be shuffled
+	 * @return the sentece already shuffled
+	 */
 	public String shuffle(String sentenceOrig) {
 		String sentence = sentenceOrig.toLowerCase();
 		
@@ -116,18 +128,5 @@ public class SentenceShuffler {
 		ret = Character.toUpperCase(ret.charAt(0)) + ret.substring(1, ret.length());
 		
 		return ret;
-	}
-	
-	public static void main(String[] args) {
-		SentenceShuffler ss;
-		try {
-			ss = new SentenceShuffler(5);
-		} catch (Exception ex) {
-			System.err.println(ex.getMessage());
-			
-			return;
-		}
-		
-		System.out.println(ss.shuffle("My brand My brand new phrase My brand new phrase brand new phrase My brand new phrase My brand new phrase My brand new phrase My brand new phrase My brand new phrase My brand new phrase"));
 	}
 }

@@ -30,18 +30,29 @@ import org.codehaus.jackson.node.ArrayNode;
 import org.codehaus.jackson.node.ObjectNode;
 
 /**
- *
+ * Wrapper class of the JsonNode from the library Jackson
+ * 
  * @author alex952
  */
 public class JSONParams {
 
 	JsonNode rootNode = null;
 	
+	/**
+	 * Main constructor. Initializes a blank node
+	 */
 	public JSONParams() {
 		ObjectMapper mapper = new ObjectMapper();
 		rootNode = mapper.createObjectNode();
 	}
 	
+	/**
+	 * Constructor that builds up a node out of a 
+	 * json string specification
+	 * 
+	 * @param json JSON in String format
+	 * @throws IOException If the structure is not correct
+	 */
 	public JSONParams(String json) throws IOException {
 		ObjectMapper mapper = new ObjectMapper();
 		rootNode = mapper.readValue(json, JsonNode.class);
@@ -51,7 +62,12 @@ public class JSONParams {
 		this.rootNode = node;
 	}
 	
-	
+	/**
+	 * Returns a property of an object node
+	 * 
+	 * @param key key of the wanted property
+	 * @return the property
+	 */
 	public String getProperty(String key) {
 		JsonNode node = rootNode.get(key);
 		String ret = node.asText();
@@ -59,18 +75,36 @@ public class JSONParams {
 		return ret;
 	}
 	
+	/**
+	 * Gets a JSON object from an array by its index
+	 * 
+	 * @param index index of the desired object
+	 * @return the object
+	 */
 	public JSONParams getObjectAt(Integer index) {
 		JsonNode node = rootNode.get(index);
 		
 		return new JSONParams(node);
 	}
 	
+	/**
+	 * Gets an object as it was a property, but
+	 * in the form of a JSON object
+	 * 
+	 * @param key the key of the property
+	 * @return a JSON object
+	 */
 	public JSONParams getObject(String key) {
 		JsonNode node = rootNode.get(key);
 		
 		return new JSONParams(node);
 	}
 	
+	/**
+	 * Size of a JSON array
+	 * 
+	 * @return the size of the JSON array
+	 */
 	public int size() {
 		if (this.rootNode instanceof ArrayNode) {
 			ArrayNode arrayNode = (ArrayNode)this.rootNode;
@@ -81,10 +115,20 @@ public class JSONParams {
 		return 1;
 	}
 	
+	/**
+	 * Returns the JSON structure in a String format
+	 * 
+	 * @return the JSON in String
+	 */
 	public String toString() {
 		return this.rootNode.toString();
 	}
 	
+	/**
+	 * Gets the JSON formatted as a Hashmap of properties
+	 * 
+	 * @return the Hashmap containing all tht properties
+	 */
 	public HashMap<String, String> formatAsHash() {
 		
 		HashMap<String, String> ret = new HashMap<String, String>();
@@ -101,24 +145,23 @@ public class JSONParams {
 		return ret;
 	}
 	
+	/**
+	 * Returns an iterator to the keyset of the JSON object
+	 */
 	public Iterator<String> getKeySet() {
 		return this.rootNode.getFieldNames();
 	}
 	
+	/**
+	 * Adds a property to the JSON object with the given key
+	 * 
+	 * @param key key for the new attribute
+	 * @param value value of the attribute
+	 */
 	public void addProperty(String key, String value) {
 		if (this.rootNode instanceof ObjectNode) {
 			ObjectNode obj = (ObjectNode)this.rootNode;
 			obj.put(key, value);
 		}
 	}
-	
-	public static void main(String[] args) {
-		try {
-			JSONParams p = new JSONParams("{\"hola\":\"hola2\",\"adios\":\"adios2\"}");
-			
-		} catch (IOException ex) {
-			Logger.getLogger(JSONParams.class.getName()).log(Level.SEVERE, null, ex);
-		}
-	}
-
 }

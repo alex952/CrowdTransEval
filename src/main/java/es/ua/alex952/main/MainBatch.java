@@ -45,9 +45,6 @@ class MainBatch implements Runnable {
 	private String pathLO = null;
 	private String pathTR = null;
 	private String pathGold = null;
-	//DEBUG purpose only
-	private String pathApertium = null;
-	private String pathGoogle = null;
 	//Is daemon mode activated?
 	private boolean daemon = false;
 	//Daemon check frecuency
@@ -56,34 +53,15 @@ class MainBatch implements Runnable {
 	private String id = null;
 	//Instance for operation
 	private JobsCF instance = null;
-	//Parse error catching pourpose
-	private boolean correctParse = true;
 	//Config file default value
 	private String parametersFile = "";
 	private String configFile = "";
 
-	//[[ DEBUG
-	public void setPathLO(String pathLO) {
-		this.pathLO = pathLO;
-	}
-
-	public void setPathTR(String pathTR) {
-		this.pathTR = pathTR;
-	}
-
-	public void setPathApertium(String pathApertium) {
-		this.pathApertium = pathApertium;
-	}
-
-	public void setPathGoogle(String pathGoogle) {
-		this.pathGoogle = pathGoogle;
-	}
-
-	public void setPathGold(String pathGold) {
-		this.pathGold = pathGold;
-	}
-	//]]
-
+	/**
+	 * Main constructor that parses all arguments from the command line
+	 * 
+	 * @param args Command line arguments
+	 */
 	public MainBatch(String[] args) {
 
 		//Operation creation for usage print		
@@ -197,6 +175,10 @@ class MainBatch implements Runnable {
 		}
 	}
 
+	/**
+	 * Main method of the class that runs the specified options in the
+	 * command line arguments parsed in constructor method
+	 */
 	@Override
 	public void run() {
 
@@ -222,8 +204,6 @@ class MainBatch implements Runnable {
 					this.instance = new JobsCF(this.parametersFile, this.configFile);
 					this.instance.setPathLO(pathLO);
 					this.instance.setPathTR(pathTR);
-					this.instance.setPathApertium(pathApertium);
-					this.instance.setPathGoogle(pathGoogle);
 					this.instance.setPathGold(pathGold);
 
 					this.instance.create();
@@ -310,66 +290,8 @@ class MainBatch implements Runnable {
 	}
 
 	public static void main(String[] args) {
-		/*
-		 * MainBatch m = new MainBatch(args); m.run();
-		 */
-
-		//DEBUG CODE
-		//MainBatch mb = new MainBatch(new String[]{"-c"});
-		//MainBatch mb = new MainBatch(new String[]{"-d", "89571"});
 		MainBatch mb = new MainBatch(args);
 
-		//MAC
-		/*
-		 * mb.setPathLO("/Users/alex952/Desktop/Current
-		 * Development/pfccrowdsourcing/CrowdFlowerTasks/config/lo.txt");
-		 * mb.setPathTR("/Users/alex952/Desktop/Current
-		 * Development/pfccrowdsourcing/CrowdFlowerTasks/config/tr.txt");
-		 * mb.setPathGold("/Users/alex952/Desktop/Current
-		 * Development/pfccrowdsourcing/CrowdFlowerTasks/config/gold.txt");
-		 *
-		 * mb.setPathApertium("/Users/alex952/Desktop/Current
-		 * Development/pfccrowdsourcing/CrowdFlowerTasks/config/ap.txt");
-		 * mb.setPathGoogle("/Users/alex952/Desktop/Current Development/pfccrowdsourcing/CrowdFlowerTasks/config/goo.txt");
-		 */
-
-		//LINUX
-		/*
-		 * mb.setPathLO("/home/alex952/pfccrowdsourcing/CrowdFlowerTasks/config/lo.txt");
-		 * mb.setPathTR("/home/alex952/pfccrowdsourcing/CrowdFlowerTasks/config/tr.txt");
-		 * mb.setPathGold("/home/alex952/pfccrowdsourcing/CrowdFlowerTasks/config/gold.txt");
-		 *
-		 * mb.setPathApertium("/home/alex952/pfccrowdsourcing/CrowdFlowerTasks/config/ap.txt");
-		mb.setPathGoogle("/home/alex952/pfccrowdsourcing/CrowdFlowerTasks/config/goo.txt");
-		 */
-
-		//Only JSON
-
-		/*
-		 * try { System.out.println(mb.createJSON()); } catch (IOException ex) {
-		 * ex.printStackTrace();
-		}
-		 */
-
-		//Only populate
-		/*
-		 * try { String json = mb.createJSON();
-		 *
-		 * mb.instance.populate(json, "86111"); } catch (Exception e) {
-		 * System.err.println(e.getMessage()); }
-		 */
-
-		//Test html graph creation
-		/*
-		 * double[] adequacy = new double[]{1.3, 2.4}; double[] fluency = new
-		 * double[]{3.4, 4.4};
-		 *
-		 * String htmlGraph = mb.buildChar(adequacy, fluency);
-		 *
-		 * System.out.println(htmlGraph);
-		 */
-
-		//Altogether
 		mb.run();
 	}
 }

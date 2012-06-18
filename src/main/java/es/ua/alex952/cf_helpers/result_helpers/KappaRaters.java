@@ -185,16 +185,34 @@ public class KappaRaters {
 		return res;
 	}
 	
+	/**
+	 * Getter for the fluency ratings answered by one rater
+	 * 
+	 * @param score The score that we want to know
+	 * @return Total score given by the rater A
+	 */
 	public Integer getRatingsFluencyA(int score) {
 		return this.getRatings(this.flucencyRates[score]);
 	}
 	
+	/**
+	 * Getter for the adequacy ratings answered by one rater
+	 * 
+	 * @param score The score that we want to know
+	 * @return Total score given by the rater A
+	 */
 	public Integer getRatingsAdequacyA(int score) {
 		
 		
 		return this.getRatings(this.adecuacyRates[score]);
 	}
 	
+	/**
+	 * Getter for the fluency ratings answered by one rater
+	 * 
+	 * @param score The score that we want to know
+	 * @return Total score given by the rater B
+	 */
 	public Integer getRatingsFluencyB(int score) {
 		int[] column = new int[this.flucencyRates.length];
 		
@@ -205,6 +223,12 @@ public class KappaRaters {
 		return this.getRatings(column);
 	}
 	
+	/**
+	 * Getter for the adequacy ratings answered by one rater
+	 * 
+	 * @param score The score that we want to know
+	 * @return Total score given by the rater B
+	 */
 	public Integer getRatingsAdequacyB(int score) {
 		int[] column = new int[this.adecuacyRates.length];
 		
