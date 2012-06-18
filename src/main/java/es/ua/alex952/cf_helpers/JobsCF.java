@@ -328,20 +328,6 @@ public class JobsCF extends CFHelper {
 
 		BufferedReader br2 = new BufferedReader(new InputStreamReader(dis2));
 
-//		//DEBUG
-//		FileInputStream fisap = new FileInputStream(this.pathApertium);
-//		DataInputStream disap = new DataInputStream(fisap);
-//
-//		BufferedReader brap = new BufferedReader(new InputStreamReader(disap));
-//
-//		FileInputStream fisgoo = new FileInputStream(this.pathGoogle);
-//		DataInputStream disgoo = new DataInputStream(fisgoo);
-//
-//		BufferedReader brgoo = new BufferedReader(new InputStreamReader(disgoo));
-//
-//		String ap, goo;
-//		//DEBUG
-
 		String line1, line2;
 
 		while ((line1 = br1.readLine()) != null && (line2 = br2.readLine()) != null) {
@@ -349,15 +335,6 @@ public class JobsCF extends CFHelper {
 
 			param.addProperty("lo", line1);
 			param.addProperty("tr", line2);
-
-//			//DEBUG
-//			ap = brap.readLine();
-//			goo = brgoo.readLine();
-//
-//			param.addProperty("google", goo);
-//			param.addProperty("apertium", ap);
-//
-//			//DEBUG
 
 			for (Service c : this.services) {
 				param.addProperty(c.getName(), c.getTranslation(line1, this.LO, this.LM));
