@@ -118,8 +118,8 @@ public class JobsCF extends CFHelper {
 				this.shuffler = new SentenceShuffler(grade);
 
 				//Source language and goal language
-				this.LO = p.getProperty("LO");
-				this.LM = p.getProperty("LM");
+				this.LO = p.getProperty("SL");
+				this.LM = p.getProperty("TL");
 
 				//Initialize translation services
 				//Possible dependency injection
