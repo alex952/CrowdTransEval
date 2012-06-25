@@ -60,17 +60,6 @@ public class JobsCF extends CFHelper {
 	private final Logger logger = LoggerFactory.getLogger(JobsCF.class);
 	
 	private String[] channels;
-	//TODO: remove
-	private String pathApertium;
-	private String pathGoogle;
-
-	public void setPathApertium(String pathApertium) {
-		this.pathApertium = pathApertium;
-	}
-
-	public void setPathGoogle(String pathGoogle) {
-		this.pathGoogle = pathGoogle;
-	}
 
 	public void setPathLO(String pathLO) {
 		this.pathLO = pathLO;
