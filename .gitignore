@@ -1,6 +1,5 @@
 config/**
 target/**
-doc/**
 graph.html
 nb*
 *.tgz

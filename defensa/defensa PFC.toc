@@ -1,0 +1,8 @@
+\beamer@endinputifotherversion {3.12pt}
+\select@language {english}
+\beamer@sectionintoc {1}{Introducci\'on}{2}{0}{1}
+\beamer@sectionintoc {2}{Terminolog\IeC {\'\i }a}{13}{0}{2}
+\beamer@sectionintoc {3}{CrowdTransEval}{24}{0}{3}
+\beamer@subsectionintoc {3}{1}{Aplicaci\'on}{25}{0}{3}
+\beamer@subsectionintoc {3}{2}{Flujo de programa}{34}{0}{3}
+\beamer@subsectionintoc {3}{3}{Resultados}{55}{0}{3}

@@ -1,0 +1,503 @@
+%% LyX 2.0.1 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english]{beamer}
+\usepackage{mathptmx}
+\renewcommand{\sfdefault}{lmss}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{textcomp}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+ % this default might be overridden by plain title style
+ \newcommand\makebeamertitle{\frame{\maketitle}}%
+ \AtBeginDocument{
+   \let\origtableofcontents=\tableofcontents
+   \def\tableofcontents{\@ifnextchar[{\origtableofcontents}{\gobbletableofcontents}}
+   \def\gobbletableofcontents#1{\origtableofcontents}
+ }
+ \long\def\lyxframe#1{\@lyxframe#1\@lyxframestop}%
+ \def\@lyxframe{\@ifnextchar<{\@@lyxframe}{\@@lyxframe<*>}}%
+ \def\@@lyxframe<#1>{\@ifnextchar[{\@@@lyxframe<#1>}{\@@@lyxframe<#1>[]}}
+ \def\@@@lyxframe<#1>[{\@ifnextchar<{\@@@@@lyxframe<#1>[}{\@@@@lyxframe<#1>[<*>][}}
+ \def\@@@@@lyxframe<#1>[#2]{\@ifnextchar[{\@@@@lyxframe<#1>[#2]}{\@@@@lyxframe<#1>[#2][]}}
+ \long\def\@@@@lyxframe<#1>[#2][#3]#4\@lyxframestop#5\lyxframeend{%
+   \frame<#1>[#2][#3]{\frametitle{#4}#5}}
+ \def\lyxframeend{} % In case there is a superfluous frame end
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+%\usetheme{Warsaw}
+\usetheme{Dresden}
+% or ...
+
+\usecolortheme{orchid}
+%\setbeamertemplate{footline}[text line]{} % makes the footer EMPTY
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}{%
+  \raisebox{5pt}{\makebox[\paperwidth]{\hfill\makebox[10pt]{\scriptsize\insertframenumber}}}}
+
+\setbeamercovered{transparent}
+\newtheorem{midef}{Definición}
+
+\makeindex
+% or whatever (possibly just delete it)
+
+\makeatother
+
+\usepackage{babel}
+\begin{document}
+
+\title{CrowdTransEval: evaluación de sistemas de traducción automática mediante
+crowdsourcing}
+
+
+\author{Alejandro Navarro Fulleda \\ \textbf{Dirigido por:} Juan Antonio
+Pérez Ortiz}
+
+
+\date{Defensa de proyecto de final de carrera, 2012}
+
+\makebeamertitle
+\AtBeginSection[]{
+
+  \frame<beamer>{ 
+
+    \frametitle{Indice}   
+
+    \tableofcontents[currentsection] 
+
+  }
+
+}
+
+\AtBeginSubsection[]{
+
+  \frame<beamer>{ 
+
+    \frametitle{Indice}   
+
+    \tableofcontents[currentsection,currentsubsection] 
+
+  }
+
+}
+
+
+\lyxframeend{}\section{Introducción}
+
+
+\lyxframeend{}\lyxframe{Motivación del proyecto}
+
+La evaluación de traductores automáticos requería de:
+
+
+\pause{}
+\begin{itemize}
+\item Expertos traductores \textrightarrow{} Evaluaciones costosas
+
+\begin{itemize}
+\item Tiempo
+\item Dinero
+\end{itemize}
+
+\pause{}
+
+\item Tareas casi idénticas \textrightarrow{} Necesidad de reutilización
+\end{itemize}
+
+\lyxframeend{}\lyxframe{Solución: Crowdsourcing}
+\begin{midef}%{}
+Consiste en externalizar tareas a un grupo numeroso de personas o
+una comunidad, a través de una convocatoria abierta.
+\end{midef}%{}
+
+\pause{}
+\begin{itemize}
+\item Tareas personalizadas
+
+
+\pause{}
+
+\item Millones de posibles trabajadores
+
+
+\pause{}
+
+\item Control de calidad
+
+
+\pause{}
+
+\item Distintos servicios
+
+\begin{itemize}
+\item Mechanical Turk (sólo para EEUU)
+\item CrowdFlower (válido para Europa y la plataforma que usaremos)
+\end{itemize}
+\end{itemize}
+
+\lyxframeend{}\lyxframe{Tarea ejemplo}
+
+\includegraphics[width=0.8\paperwidth]{solving}
+
+
+\lyxframeend{}\lyxframe{Concepto de la aplicación}
+
+\includegraphics[width=0.8\paperwidth]{\string"CrowdTransEval - Diagrama\string".jpg}
+
+
+\lyxframeend{}\section{Terminología}
+
+
+\lyxframeend{}\lyxframe{Jobs}
+\begin{itemize}
+\item Son las tareas de evaluación
+
+
+\pause{}
+
+\item Se componen de unidades a responder por el trabajador
+
+
+\pause{}
+
+\item Se crean a partir de atributos definidos
+
+\begin{itemize}
+\item Título
+\item Descripción
+\item Instrucciones
+\end{itemize}
+\end{itemize}
+
+\lyxframeend{}\lyxframe{Units }
+\begin{itemize}
+\item Representan una unidad de trabajo
+
+
+\pause{}
+\begin{itemize}
+\item En nuestro caso la evaluación de los distintos traductores para una
+frase
+
+
+\pause{}
+\begin{itemize}
+\item Fluidez de la traducción
+\item Adecuación de la traducción
+\end{itemize}
+\end{itemize}
+\end{itemize}
+
+\lyxframeend{}\lyxframe{Gold standards}
+\begin{itemize}
+\item Control de calidad ofrecido por CF
+
+
+\pause{}
+
+\item Definen unidades con respuestas conocidas
+
+
+\pause{}
+
+\item Mide la fiabilidad de un trabajador
+
+
+\pause{}
+\begin{itemize}
+\item Colocando trampas entre las unidades del trabajo
+\item Desechando las respuestas de un trabajador poco fiable
+\end{itemize}
+\end{itemize}
+
+\lyxframeend{}\section{CrowdTransEval}
+
+
+\lyxframeend{}\subsection{Aplicación}
+
+
+\lyxframeend{}\lyxframe{Aplicación}
+\begin{itemize}
+\item <1->Aplicación por linea de órdenes
+
+
+\pause{}
+
+\item <2->Dos modos
+
+\begin{itemize}
+\item <3->Creación del trabajo
+
+
+\pause{}
+
+\item <4->Demonio de comprobación de trabajo finalizado
+\end{itemize}
+
+\pause{}
+
+\item <5->Podemos usar los dos en conjunto o por separado
+
+
+\pause{}
+
+\item <7->Necesita algunos datos para trabajar con las API's
+\end{itemize}
+
+\pause{}
+\begin{columns}%{}
+
+
+\column{50mm}
+\begin{exampleblock}
+{Ambos modos}
+
+java -jar CrowdTransEval.jar -cf config.properties -pf parameters.properties
+-g gold.txt -sl sl.txt -rt rt.txt -d
+\end{exampleblock}
+
+\column{50mm}
+\begin{exampleblock}
+{Sólo demonio}
+
+java -jar CrowdTransEval.jar -d <id del trabajo a monitorizar>
+\end{exampleblock}
+\end{columns}%{}
+
+\lyxframeend{}\lyxframe{Configuración de la aplicación}
+\begin{itemize}
+\item Configuración a través de fichero de propiedades\end{itemize}
+\begin{exampleblock}
+{Ejemplo de fichero config.properties}
+
+CrowdFlowerKey=<tu clave para el API de CF>
+
+ShuffleGrade=1
+
+Channels=mob
+
+SL=en
+
+TL=es
+
+ApertiumKey=<tu clave para el API de Apertium>
+
+BingClientId=<tu identificador de cliente para Bing translator>
+
+BingClientSecret=<el secreto de la aplicacion de Bing translator>
+\end{exampleblock}
+
+\lyxframeend{}\subsection{Flujo de programa}
+
+
+\lyxframeend{}\lyxframe{Flujo del programa}
+\begin{enumerate}
+\item Crear el trabajo en CF
+\item Poblar el trabajo con unidades
+\item Añadir \emph{gold standards}
+\item Encargar el trabajo
+\item Esperar a que el trabajo termine
+\item Recoger los resultados e interpretarlos
+\end{enumerate}
+
+\lyxframeend{}\lyxframe{Creación del trabajo}
+\begin{itemize}
+\item Configuración del trabajo mediante fichero de propiedades
+
+
+\pause{}
+
+\item El trabajo se crea vacío para rellenarse posteriormente
+
+
+\pause{}
+
+\item El identificador del trabajo se usará a través de todo el proceso
+\end{itemize}
+
+\lyxframeend{}\lyxframe{Ejemplo de configuración del trabajo}
+\begin{exampleblock}
+{Ejemplo de fichero parameters.properties}
+
+title=Nombre del trabajo
+
+instructions=Instrucciones de resolución del trabajo
+
+judgment\_per\_unit=1
+
+units\_per\_page=1
+\end{exampleblock}
+
+\lyxframeend{}\lyxframe{Rellenado del trabajo}
+\begin{itemize}
+\item Dos ficheros con frases
+
+
+\pause{}
+\begin{itemize}
+\item sl.txt: las frases a traducir
+
+
+\pause{}
+
+\item rt.txt: traducciones de referencia de las frases
+\end{itemize}
+
+\pause{}
+
+\item Traducción real mediante los servicios de traducción
+
+\begin{itemize}
+\item Uso de la API web de los mismos
+\end{itemize}
+
+\pause{}
+
+\item JSON para el transporte de datos
+\end{itemize}
+
+\lyxframeend{}\lyxframe{Ejemplo de ficheros de frases}
+\begin{columns}%{}
+
+
+\column{50mm}
+\begin{exampleblock}
+{Ejemplo de fichero sl.txt}
+
+The wind lashed the trees
+
+The table was far away
+\end{exampleblock}
+
+\column{50mm}
+\begin{exampleblock}
+{Ejemplo de fichero tr.txt}
+
+El viento azotaba los árboles
+
+La mesa no estaba cerca
+\end{exampleblock}
+\end{columns}%{}
+
+\lyxframeend{}\lyxframe{Creación de Gold Standard}
+\begin{itemize}
+\item Fichero gold.txt
+
+\begin{itemize}
+\item Frase en idioma original
+\item Traducción de referencia
+\item Traducción real
+\end{itemize}
+
+\pause{}
+
+\item Creación de frases falsas
+
+
+\pause{}
+
+\item JSON para subirlos al trabajo
+\end{itemize}
+
+\lyxframeend{}\lyxframe{Barajado de frases}
+
+\includegraphics[width=0.8\paperwidth]{\string"CrowdTransEval - Barajado de frases\string".jpg}
+
+
+\lyxframeend{}\lyxframe{Ejemplo de fichero de Gold Standards}
+\begin{exampleblock}
+{Ejemplo de fichero gold.txt}
+
+This sentence is used as a Gold Standard
+
+Esto es un Gold Standard
+
+Esta frase es usada como un Gold Standard
+\end{exampleblock}
+
+\lyxframeend{}\lyxframe{Ejemplo de trabajo con unidades}
+
+\includegraphics[width=0.8\paperwidth]{populated}
+
+
+\lyxframeend{}\lyxframe{Encargar el trabajo}
+\begin{itemize}
+\item Publicación del trabajo en los canales configurados
+
+\begin{itemize}
+\item Propiedad Channels de fichero de configuración
+\end{itemize}
+
+\pause{}
+
+\item Mob, interfaz interna de CrowdFlower
+
+\begin{itemize}
+\item Gratuita
+\item Utilizada con el propósitos de realizar pruebas
+\item Podemos resolver nuestros propios trabajos
+\end{itemize}
+
+\end{itemize}
+
+\lyxframeend{}\lyxframe{Ejemplo de resolución de trabajo}
+
+\includegraphics[width=0.8\paperwidth]{solving}
+
+
+\lyxframeend{}\subsection{Resultados}
+
+
+\lyxframeend{}\lyxframe{Generación de resultados}
+\begin{itemize}
+\item Cuando se cumplen todos los juicios encargados
+
+
+\pause{}
+
+\item Obtención de medidas
+
+\begin{itemize}
+\item Puntuaciones medias de cada servicio
+\item Valores de acuerdo entre anotadores (Factor Kappa de Cohen)
+\end{itemize}
+\end{itemize}
+
+\lyxframeend{}\lyxframe{Factor Cohen's Kappa}
+
+Determina cuanto acuerdo existe entre pares de anotadores (trabajadores)
+
+\[
+\kappa=\frac{Pr(a)-Pr(e)}{1-Pr(e)}
+\]
+
+
+Siendo:
+\begin{itemize}
+\item Pr(a): el acuerdo relativo entre pares de anotadores
+\item Pr(e): la probabilidad de acuerdo fortuito
+\end{itemize}
+
+\lyxframeend{}\lyxframe{Presentación resultados}
+\begin{itemize}
+\item HTML con las medidas generadas
+
+\begin{itemize}
+\item Google Chart Tools
+\end{itemize}
+\item CSV con los resultados por unidad y trabajador
+\end{itemize}
+
+\lyxframeend{}
+
+\lyxframeend{}\lyxframe{Ejemplo de informe de resultados}
+\begin{center}
+\includegraphics[height=0.8\paperheight]{HTMLResults.jpg}
+\end{center}
+\lyxframeend{}
+
+\end{document}
